@@ -1,0 +1,5 @@
+package-as: AddonLoader
+
+externals:
+    /LibStub: http://svn.wowace.com/wowace/tags/LibStub/1.0/
+    /CallbackHandler-1.0: http://svn.wowace.com/wowace/trunk/Ace3/CallbackHandler-1.0/
