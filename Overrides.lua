@@ -156,4 +156,4 @@ end )
 InterfaceOptions_AddCategory(frame)
 
 SLASH_ADDONLOADER1 = "/addonloader"
-SlashCmdList.ADDONLOADER = function() InterfaceOptionsFrame_OpenToFrame(frame) end
+SlashCmdList.ADDONLOADER = function() InterfaceOptionsFrame_OpenToCategory(frame) end
