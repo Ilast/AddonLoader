@@ -11,8 +11,11 @@
 
 ## SavedVariablesPerCharacter: AddonLoaderSV
 
+#@no-lib-strip@
 LibStub\LibStub.lua
 CallbackHandler-1.0\CallbackHandler-1.0.lua
+#@end-no-lib-strip@
+
 LibDataBroker-1.1\LibDataBroker-1.1.lua
 
 AddonLoader.lua
