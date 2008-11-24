@@ -255,7 +255,7 @@ AddonLoader.conditions = {
 			for i = 2, 5 do
 				local lookfor =  "X-LoadOn-Execute"..i
 				local md
-				local conditiontext = AdddonLoader.conditiontexts[name]
+				local conditiontext = AddonLoader.conditiontexts[name]
 				for line in conditiontext:gmatch("[^\n]+") do
 					local condname, text = string.match(line, "^([^:]*): (.*)$")
 					if condname and text and condname == lookfor then
