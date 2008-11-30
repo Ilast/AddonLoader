@@ -23,6 +23,8 @@ AddonLoader.lua
 locale\enUS.lua
 locale\deDE.lua
 locale\esES.lua
+locale\zhCN.lua
+locale\zhTW.lua
 
 Conditions.lua
 Overrides.lua
