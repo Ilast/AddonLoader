@@ -25,6 +25,7 @@ locale\deDE.lua
 locale\esES.lua
 locale\zhCN.lua
 locale\zhTW.lua
+locale\koKR.lua
 
 Conditions.lua
 Overrides.lua
