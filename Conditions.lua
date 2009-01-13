@@ -68,6 +68,10 @@ AddonLoader.conditions = {
 		events = {"PLAYER_LOGIN"},
 		handler = function(event, name, arg) return tostring(arg):upper() == select(2,UnitClass("player")) end,
 	},
+	["X-LoadOn-Realm"] = {
+		events = {"PLAYER_LOGIN"},
+		handler = function(event, name, arg) return GetRealmName() == arg end,
+	}, 
 	["X-LoadOn-Guild"] = {
 		events = {"PLAYER_LOGIN"},
 		handler = function() return IsInGuild() end,
