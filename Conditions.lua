@@ -241,7 +241,7 @@ AddonLoader.conditions = {
 		end,
 	},
 	["X-LoadOn-Zone"] = {
-		events = {"ZONE_CHANGED_NEW_AREA", "PLAYER_ENTERING_WORLD", "ZONE_CHANGED_INDOORS", "MINIMAP_ZONE_CHANGED"},
+		events = {"ZONE_CHANGED_NEW_AREA", "PLAYER_ENTERING_WORLD", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "MINIMAP_ZONE_CHANGED"},
 		handler = function(event, name, arg)
 			if not BZ then
 				BZ = LibStub and LibStub("Babble-Zone-3.0", true) -- silent check for BZ
