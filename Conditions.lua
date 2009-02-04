@@ -15,7 +15,7 @@ AddonLoader.conditions = {
 		handler = returnTrue
 	},
 	["X-LoadOn-AuctionHouse"] = {
-		events = {"AUCTIONHOUSE_SHOW"},
+		events = {"AUCTION_HOUSE_SHOW"},
 		handler = returnTrue
 	},
 	["X-LoadOn-Bank"] = {
