@@ -146,7 +146,7 @@ frame:SetScript("OnShow", function(frame)
 	editbox:SetBackdropBorderColor(.5,.5,.5)
 	editbox:SetMultiLine(true)
 	editbox:SetAutoFocus(false)
-	editbox:SetText(AddonLoader.conditiontexts[currentAddon])
+	editbox:SetText(AddonLoader.conditiontexts[currentAddon] or "")
 	editbox:SetScript("OnEditFocusLost", focuslost)
 	editbox:SetScript("OnEscapePressed", editbox.ClearFocus)
 
