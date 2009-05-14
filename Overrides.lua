@@ -55,13 +55,9 @@ frame:SetScript("OnShow", function(frame)
 				checked = nil
 			end
 			if AddonLoader.conditiontexts[addon] ~= AddonLoader.originals[addon] then
-				info.textR = 1
-				info.textG = 1
-				info.textB = 1
+				info.colorCode="|cFFFFFFFF"
 			else
-				info.textR = .66
-				info.textG = .66
-				info.textB = .66
+				info.colorCode="|cFF666666"
 			end
 			info.text = addon
 			info.func = dropdown_onclick
