@@ -231,12 +231,17 @@ AddonLoader.conditions = {
 			local texture, brokername = string.split(" ", arg)
 			brokername = brokername or name
 
-			local OnClick, dataobj
+			local OnClick, dataobj, OnTooltipShow
 			OnClick = function(...)
 				AddonLoader:LoadAddOn(name)
 				if OnClick ~= dataobj.OnClick then dataobj.OnClick(...) end
 			end
-			dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject(brokername, {type = "launcher", tocname = name, icon = texture, OnClick = OnClick})
+			OnTooltipShow = function(tt)
+				tt:AddLine(brokername)
+				tt:AddLine(AddonLoader.L.clicktoload, 0.2, 1, 0.2, 1)
+			end
+			dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject(brokername, {type = "launcher", tocname = name, icon = texture, OnClick = OnClick, OnTooltipShow = OnTooltipShow})
+			
 			-- We specifically DO NOT return true here, this handler just sets up the other conditions. And will remain dorment for the remainder
 		end,
 	},
