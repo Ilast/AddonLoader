@@ -9,6 +9,23 @@ end
 local delayFrame -- will be filled if needed with a frame for loading addons delayed.
 local BZ -- will be a reference to babble-zone-3.0 if needed
 
+local function optionsOnShow(self)
+	if not IsAddOnLoaded(self.addon) then
+		-- remove from options frame
+		for i, f in ipairs(INTERFACEOPTIONS_ADDONCATEGORIES) do
+			if f == self then
+				tremove(INTERFACEOPTIONS_ADDONCATEGORIES, i)
+				break
+			end
+		end
+		self:Hide()
+		-- load addon
+		AddonLoader:LoadAddOn(self.addon)
+		-- refresh optionsframe
+		InterfaceOptionsFrame_OpenToCategory(self.name)
+	end
+end
+
 AddonLoader.conditions = {
 	["X-LoadOn-Mailbox"] = {
 		events = {"MAIL_SHOW"},
@@ -288,4 +305,16 @@ AddonLoader.conditions = {
 			end
 		end,
 	},
+	["X-LoadOn-InterfaceOptions"] = {
+		events = {"PLAYER_LOGIN"},
+		handler = function(event, name, arg)
+			local frame = CreateFrame("Frame", nil, UIParent)
+			frame.name = arg
+			frame.addon = name
+			frame:Hide()
+			frame:SetScript("OnShow", optionsOnShow)
+			InterfaceOptions_AddCategory(frame)
+			-- we do not return true here, the optionsOnShow function will actually load the addon
+		end,
+	}
 }
