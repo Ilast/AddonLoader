@@ -9,15 +9,19 @@ end
 local delayFrame -- will be filled if needed with a frame for loading addons delayed.
 local BZ -- will be a reference to babble-zone-3.0 if needed
 
+function AddonLoader:RemoveInterfaceOptions(name)
+	for k, f in ipairs(INTERFACEOPTIONS_ADDONCATEGORIES) do
+		if f == name or f.name == name then
+			tremove(INTERFACEOPTIONS_ADDONCATEGORIES, k)
+			break
+		end
+	end
+end
+
 local function optionsOnShow(self)
 	if not IsAddOnLoaded(self.addon) then
 		-- remove from options frame
-		for i, f in ipairs(INTERFACEOPTIONS_ADDONCATEGORIES) do
-			if f == self then
-				tremove(INTERFACEOPTIONS_ADDONCATEGORIES, i)
-				break
-			end
-		end
+		AddonLoader:RemoveInterfaceOptions(self)
 		self:Hide()
 		-- load addon
 		AddonLoader:LoadAddOn(self.addon)
