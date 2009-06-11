@@ -100,7 +100,7 @@ AddonLoader.conditions = {
 	["X-LoadOn-Always"] = {
 		events = {"PLAYER_LOGIN"},
 		handler = function( event, name, arg )
-			if (arg or ""):lower() ~= "delayed" then return true end
+			if not (arg or ""):lower():match("^delayed") then return true end
 			-- delayed loading, one addon per second
 			if not delayFrame then
 				delayFrame = CreateFrame("Frame")
