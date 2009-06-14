@@ -87,7 +87,15 @@ AddonLoader.conditions = {
 	},
 	["X-LoadOn-Class"] = {
 		events = {"PLAYER_LOGIN"},
-		handler = function(event, name, arg) return tostring(arg):upper() == select(2,UnitClass("player")) end,
+		handler = function(event, name, arg)
+			local result = false
+			for class in arg:gmatch("[^ ,]+") do
+				if tostring(class):upper() == select(2, UnitClass("player")) then
+					result = true
+				end
+			end
+			return result
+		end,
 	},
 	["X-LoadOn-Realm"] = {
 		events = {"PLAYER_LOGIN"},
