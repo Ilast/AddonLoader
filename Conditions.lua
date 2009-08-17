@@ -278,7 +278,7 @@ AddonLoader.conditions = {
 		events = {"ZONE_CHANGED_NEW_AREA", "PLAYER_ENTERING_WORLD", "ZONE_CHANGED", "ZONE_CHANGED_INDOORS", "MINIMAP_ZONE_CHANGED"},
 		handler = function(event, name, arg)
 			if not BZ then
-				BZ = LibStub and LibStub("Babble-Zone-3.0", true) -- silent check for BZ
+				BZ = LibStub and LibStub("LibBabble-Zone-3.0", true) -- silent check for BZ
 			end
 			local subzone = string.trim(GetSubZoneText()) -- yeah really...
 			local realzone = GetRealZoneText()
