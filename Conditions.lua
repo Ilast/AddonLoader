@@ -109,24 +109,46 @@ AddonLoader.conditions = {
 		events = {"PLAYER_LOGIN"},
 		handler = function( event, name, arg )
 			if not (arg or ""):lower():match("^delayed") then return true end
-			-- delayed loading, one addon per second
+			-- delayed loading, 0.15s between addons
 			if not delayFrame then
 				delayFrame = CreateFrame("Frame")
 				delayFrame.addons = {}
 				delayFrame.elapsed = 0
+				
+				local function loadOne(...)	-- Load an addon, or a dependency of it. One at a time. Recursively. Return true if something was loaded (i.e. we should wait before loading one more)
+					for i=2,select("#",...) do
+						local addon = select(i,...)
+						if loadOne(addon, GetAddOnDependencies(addon)) then
+							return true -- we loaded something!
+						end
+					end
+					local addon = (...)
+					delayFrame.addons[addon] = nil -- nuke from the list (might not have been there but thats fine)
+					if not IsAddOnLoaded(addon) then
+						AddonLoader:LoadAddOn(addon)
+						return not not IsAddOnLoaded(addon)   -- we loaded something! (or not, in which case we just keep looking for something else to load)
+					end
+				end
+				
 				delayFrame:SetScript("OnUpdate", function(self, elapsed)
-					self.elapsed = self.elapsed + elapsed
-					if self.elapsed >= 0.25 then
-						self.elapsed = 0
+					if self.elapsed < 0 then
+						self.elapsed = 0	-- We do this to start counting the time from AFTER the previous addon loaded. Not from when it started loading.
+					else
+						self.elapsed = self.elapsed + elapsed
+						if self.elapsed >= 0.15 then
+							self.elapsed = -1
 
-						if next(self.addons) then
-							for addon in pairs(self.addons) do
-								AddonLoader:LoadAddOn(addon)
-								self.addons[addon] = nil -- nuke from the list
-								break
+							while next(self.addons) do
+								local addon = next(self.addons)
+								if loadOne(addon, GetAddOnDependencies(addon)) then
+									break
+								end
 							end
-						else
-							self:Hide()
+							if not next(self.addons) then
+								self:SetScript("OnUpdate", nil)
+								self.addons=nil
+								self:Hide()
+							end
 						end
 					end
 				end)
