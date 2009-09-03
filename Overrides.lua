@@ -92,7 +92,7 @@ frame:SetScript("OnShow", function(frame)
 	explain:SetPoint("TOPRIGHT", frame, "TOPRIGHT", -15, -80)
 	explain:SetJustifyH("LEFT")
 	explain:SetJustifyV("TOP")
-	explain:SetHeight(50)
+	explain:SetHeight(60)
 	explain:SetText(AddonLoader.L.explain)
 
 	local dropdownlabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
