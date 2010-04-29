@@ -1,4 +1,4 @@
-## Interface: 30200
+## Interface: 30300
 
 ## Title: Addon Loader
 ## Notes: Loadmanager for AddOns
