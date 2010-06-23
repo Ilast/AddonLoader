@@ -268,9 +268,14 @@ AddonLoader.conditions = {
 						hash_SlashCmdList['/'..v] = nil
 					end
 					AddonLoader:LoadAddOn(name)
-					ChatFrame_OpenChat()
-					ChatFrameEditBox:SetText(new..' '..text)
-					ChatEdit_SendText(ChatFrameEditBox,1)
+					ChatFrame_OpenChat("")
+					local editbox = ChatFrameEditBox
+					if not editbox then
+						-- Support for 3.3.5 and newer
+						editbox = ChatEdit_GetActiveWindow()
+					end
+					editbox:SetText(new..' '..text)
+					ChatEdit_SendText(editbox,1)
 				end
 			end
 			-- We specifically DO NOT return true here, this handler just sets up the other conditions. And will remain dorment for the remainder
