@@ -102,7 +102,7 @@ AddonLoader.conditions = {
 		handler = function(event, name, arg) return GetRealmName() == arg end,
 	}, 
 	["X-LoadOn-Guild"] = {
-		events = {"PLAYER_LOGIN"},
+		events = {"PLAYER_LOGIN", "GUILD_ROSTER_UPDATE", "GUILD_XP_UPDATE"},
 		handler = function() return IsInGuild() end,
 	},
 	["X-LoadOn-Always"] = {
