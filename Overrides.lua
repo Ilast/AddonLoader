@@ -30,9 +30,9 @@ frame:SetScript("OnShow", function(frame)
 		updatereset()
 	end
 
-	local function dropdown_onclick()
+	local function dropdown_onclick(self)
 		focuslost() -- save values
-		currentAddon = this.value
+		currentAddon = self.value
 		updatereset()
 		UIDropDownMenu_SetSelectedValue(dropdown, currentAddon)
 		editbox:SetText(AddonLoader.conditiontexts[currentAddon])
